@@ -33,8 +33,8 @@ public class CreditCalculator {
                 overpayment += creditCurrentBusiness;
                 break;
         }
-        credit.overpayment = overpayment;
-        return overpayment;
+        credit.overpayment = round(overpayment);
+        return round(overpayment);
     }
 
     private static double round(double value) {

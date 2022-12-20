@@ -1,26 +1,24 @@
 public class CreditDataWrite {
-    static void writeData(CreditData credit, String[] inputData) throws Exception {
+    static void writeData(CreditData credit, String[] inputData)  {
         try {
-            credit.credit = Double.parseDouble(inputData[0]);
-            credit.pay = Double.parseDouble(inputData[1]);
-            credit.percent = Double.parseDouble(inputData[2]);
-            credit.type = inputData[3].trim();
-            if (credit.credit <= 0 || credit.pay <= 0 || credit.percent < 0) {
-                throw new Exception("incorrect input numerical data");
-            }
-            if (!(credit.type.equals("business") || credit.type.equals("human"))) {
-                throw new Exception("incorrect credit type");
-            }
-            if (credit.type.equals("human") && credit.credit * (1 + credit.percent / 100) - 12 * credit.pay > 0 &&
-                    ((credit.credit * (1 + credit.percent / 100) - 12 * credit.pay) * (1 + credit.percent / 100)) >= credit.credit) {
-                throw new Exception("impossible to pay");
-            }
-            if (credit.type.equals("business") && credit.credit - 12 * credit.pay > 0 &&
-                    ((credit.credit - 12 * credit.pay) * (1 + credit.percent)) >= credit.credit) {
-                throw new Exception("impossible to pay");
+            if (Double.parseDouble(inputData[0]) > 0
+                    && Double.parseDouble(inputData[1]) > 0
+                    && Double.parseDouble(inputData[2]) >= 0
+                    && (inputData[3].trim().equals("business") || inputData[3].trim().equals("human"))
+                    && !(inputData[3].trim().equals("human")
+                        && Double.parseDouble(inputData[0]) * (1 + Double.parseDouble(inputData[2]) / 100)  > 12 * Double.parseDouble(inputData[1])
+                        && ((Double.parseDouble(inputData[0]) * (1 + Double.parseDouble(inputData[2]) / 100) -
+                            12 * Double.parseDouble(inputData[1])) * (1 + Double.parseDouble(inputData[2]) / 100)) >= credit.credit)
+                    && !(inputData[3].trim().equals("business") && Double.parseDouble(inputData[0]) > 12 * Double.parseDouble(inputData[1])
+                        && ((Double.parseDouble(inputData[0]) - 12 * Double.parseDouble(inputData[1])) *
+                            (1 + Double.parseDouble(inputData[2]) / 100)) >= Double.parseDouble(inputData[0]))) {
+                credit.credit = Double.parseDouble(inputData[0]);
+                credit.pay = Double.parseDouble(inputData[1]);
+                credit.percent = Double.parseDouble(inputData[2]);
+                credit.type = inputData[3].trim();
             }
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+          //  System.out.println(ex.getMessage());
         }
     }
 }
