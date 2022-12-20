@@ -8,7 +8,7 @@ public class CreditDataWrite {
                     && !(inputData[3].trim().equals("human")
                         && Double.parseDouble(inputData[0]) * (1 + Double.parseDouble(inputData[2]) / 100)  > 12 * Double.parseDouble(inputData[1])
                         && ((Double.parseDouble(inputData[0]) * (1 + Double.parseDouble(inputData[2]) / 100) -
-                            12 * Double.parseDouble(inputData[1])) * (1 + Double.parseDouble(inputData[2]) / 100)) >= credit.credit)
+                            12 * Double.parseDouble(inputData[1])) * (1 + Double.parseDouble(inputData[2]) / 100)) >= Double.parseDouble(inputData[0]))
                     && !(inputData[3].trim().equals("business") && Double.parseDouble(inputData[0]) > 12 * Double.parseDouble(inputData[1])
                         && ((Double.parseDouble(inputData[0]) - 12 * Double.parseDouble(inputData[1])) *
                             (1 + Double.parseDouble(inputData[2]) / 100)) >= Double.parseDouble(inputData[0]))) {
