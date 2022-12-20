@@ -33,6 +33,7 @@ public class CreditCalculator {
                 overpayment += creditCurrentBusiness;
                 break;
         }
+        credit.overpayment = overpayment;
         return overpayment;
     }
 
